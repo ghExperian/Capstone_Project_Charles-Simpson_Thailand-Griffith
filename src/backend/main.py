@@ -1,6 +1,19 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from src.backend.database import get_connection, create_table
+import streamlit as st
+import requests
+import pandas as pd
+
+st.subheader("Climate Effects from API")
+
+try:
+    resp = requests.get("https://urban-space-cod-v6jrqwj6g49vfwpx6-8000.app.github.dev/docs#/")
+    resp.raise_for_status()
+    api_df = pd.DataFrame(resp.json())
+    st.dataframe(api_df)
+except requests.RequestException as e:
+    st.error(e)
 
 app = FastAPI()
 

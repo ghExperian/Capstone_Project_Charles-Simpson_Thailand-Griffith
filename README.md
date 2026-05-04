@@ -15,3 +15,35 @@
 # The target charts that we are aiming to use for this project include a graph with a slider that allows the viewer to slide an arrow/dot through the years to see how climate change changed over time, how it affected the countries and what it is doing to the weather around the world. The second graph we are planning on incorporating is a line chart that displays a timeline of the effects of climate change as time went on. After inserting the data from the CSV file and writing the code to create the desired graphs, Thailand will copy all of the code into Google Cloud Storage. As for the potential API endpoints we plan on utilizing, we are planning on using endpoints such as /data/GET, /data/POST, and /data/DELETE to name a few. Finally as for the database schema, the main purpose of it will be to correlate the specific causes of climate change to the overall effect and how the world is being affected by it over time.
 
 # Overall, the final outcome of the data should showcase the direct causes towards the worsening condition of climate change and start to offer some solutions of how we can work to try to lessen the damage already caused.
+
+# Part 1: SETUP
+Step 1: Create the diagram, docs, src, tests, and requirements.txt files.
+1. mkdir diagram
+2. mkdir docs
+3. mkdir src
+4. mkdir tests
+5. touch requirements.txt
+Step 2: Set up the dependencies in requirements.txt:
+fastapi
+uvicorn
+pandas
+pytest
+httpx
+flake8
+google-cloud-storage
+autopep8
+streamlit
+plotly
+requests
+sqlalchemy
+# Part 2: BACKEND DEVELOPMENT
+Step 1:
+# Part 3: FRONTEND DEVELOPMENT
+Step 1:
+# Part 4: TESTING AND CODE QUALITY
+Step 1: With flake8 and pytest installed from the rest of the dependencies, enter flake8 <file_name> into the terminal to highlight any and all issues within the code.
+Step 2: Install pytest by entering: pip install pytest pytest-hhtpx into the terminal. Afterwards, write pytest test_backend.py to test how long it takes to fully load all of the data and the FastAPI endpoints.
+# Part 5: CI/CD SETUP
+Step 1: 
+# Part 6: PERFORMANCE ANALYSIS
+# Part 7: DOCUMENTATION
