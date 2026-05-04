@@ -1,0 +1,54 @@
+name: CI
+on: [push]
+jobs:
+test:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v3
+- name: Set up Python
+uses: actions/setup-python@v4
+with:
+python-version: '3.8'
+- name: Install dependencies
+run: pip install -r requirements.txt
+- name: Run tests
+run: pytest tests/test_api.py -v
+name: Upload test report to GCS
+env:
+GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCS_CREDENTIALS }}
+run: |
+pip install google-cloud-storage
+
+python -c "from google.cloud import storage;
+client = storage.Client();
+bucket = client.get_bucket('test-artifacts');
+blob = bucket.blob('pytest_report.xml');
+blob.upload_from_filename('pytest_report.xml')"
+
+name: CD
+on:
+push:
+branches: [main]
+jobs:
+deploy:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v3
+- name: Set up Google Cloud
+uses: google-github-actions/setup-gcloud@v1
+with:
+service_account_key: ${{ secrets.GCP_SA_KEY }}
+project_id: your-project-id
+- name: Build and push Docker image
+run: |
+gcloud auth configure-docker
+docker build -t gcr.io/your-project-id/personal-library-api
+.
+docker push gcr.io/your-project-id/personal-library-api
+- name: Deploy to Cloud Run
+run: |
+gcloud run deploy personal-library-api \
+--image gcr.io/your-project-id/personal-library-api \
+--platform managed \
+--region us-central1 \
+--allow-unauthenticated

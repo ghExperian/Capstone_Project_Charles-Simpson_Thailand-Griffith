@@ -81,12 +81,13 @@ st.dataframe(df)
 #    cli.main_run(["streamlit_dashboard.py","--server.port", "8501"])
 
 
-st.subheader('Overall Temperature Increase')
+st.subheader('Overall Temperature Increase (2019)')
 avg_temp_rise = df["Y2019"].value_counts()
 st.line_chart(avg_temp_rise)
 
 st.subheader("USA Temperature Increase")
-timeline = st.slider(label = "Select Time Frame", min_value = 1961, max_value = 2019, value = (1961,2019))
+timeline = st.slider(label = "Select Time Frame", min_value = 1961, max_value = 2005, value = (1961,2005))
+st.dataframe(timeline)
 filtered_df = df[(df["Y1980"] >= timeline[-2]) & (df["Y1999"] <= timeline[1])]
 st.dataframe(filtered_df)
 

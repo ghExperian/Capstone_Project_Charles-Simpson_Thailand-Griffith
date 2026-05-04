@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+pandas
+pytest
+httpx
+flake8
+google-cloud-storage
+autopep8
+streamlit
+plotly
+requests
+sqlalchemy
