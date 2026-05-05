@@ -41,3 +41,39 @@ This project explores how climate change is worsening globally over time. Using 
 ### 1. Install dependencies
 ```bash
 pip install -r requirements.txt
+
+# 2. Running the FastAPI Application
+# NOTE: The following code is for the first terminal.
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn src.backend.main:app --reload
+
+# 3. Running the Streamlit Dashboard
+# NOTE: The following code is for the second terminal.
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cd src
+cd frontend
+streamlit run dashboard.py
+
+# 4. CI/CD Testing and Code Quality Steps.
+# NOTE: The following code is for the third terminal.
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pytest
+flake8 /workspaces/Capstone_Project_Charles-Simpson_Thailand-Griffith
+
+# 5: API Endpoints and Documentation
+# NOTE: The following code goes within the api.md Markdown.
+## GET /data
+Returns all climate data.
+
+## POST /data
+Adds new climate data.
+
+## DELETE /data
+Deletes climate data.
